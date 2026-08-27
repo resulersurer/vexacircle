@@ -10,6 +10,13 @@ function generateId() {
 
 export async function POST(request: Request) {
   try {
+    if (!db) {
+      return NextResponse.json(
+        { error: "Veritabanı bağlantısı ayarlanmamış. Lütfen DATABASE_URL ortam değişkenini kontrol et." },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const { name, email, password } = body;
 
@@ -24,13 +31,6 @@ export async function POST(request: Request) {
     const trimmedName = String(name).trim();
 
     const existing = await db.select().from(users).where(eq(users.email, normalizedEmail)).limit(1);
-
-    if (!db) {
-      return NextResponse.json(
-        { error: "Veritabanı bağlantısı ayarlanmamış." },
-        { status: 500 }
-      );
-    }
 
     if (existing.length > 0) {
       return NextResponse.json(
@@ -67,8 +67,10 @@ export async function POST(request: Request) {
     );
   } catch (error) {
     console.error("Register API error:", error);
+    const message =
+      error instanceof Error ? error.message : "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar dene.";
     return NextResponse.json(
-      { error: "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar dene." },
+      { error: message },
       { status: 500 }
     );
   }

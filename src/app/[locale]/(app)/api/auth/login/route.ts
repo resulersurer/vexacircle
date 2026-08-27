@@ -59,8 +59,10 @@ export async function POST(request: Request) {
     );
   } catch (error) {
     console.error("Login API error:", error);
+    const message =
+      error instanceof Error ? error.message : "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar dene.";
     return NextResponse.json(
-      { error: "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar dene." },
+      { error: message },
       { status: 500 }
     );
   }
