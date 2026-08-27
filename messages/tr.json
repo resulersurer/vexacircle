@@ -72,5 +72,76 @@
   },
   "success": {
     "saved": "Başarıyla kaydedildi."
+  },
+  "landing": {
+    "tagline": "İlgi alanlarınla ortak noktalar bul.",
+    "subtitle": "VEXA Circle ile yeni insanlarla tanış, topluluklara katıl ve paylaşım ortamına dahil ol. Sadece seninle aynı dünyaya sahip olanları bul.",
+    "ctaPrimary": "Hemen Başla",
+    "ctaSecondary": "Keşfet",
+    "howItWorks": "Nasıl çalışır?",
+    "howItWorksSubtitle": "Sadece birkaç adımda topluluklara katıl ve paylaşıma başla.",
+    "step1Title": "İlgi alanlarını seç",
+    "step1Desc": "Sana en uygun toplulukları bulabilmemiz için ilgi alanlarını belirle.",
+    "step2Title": "Topluluklara katıl",
+    "step2Desc": "Beğendiğin topluluklara katıl, üyelerle tanış ve tartışmalara dahil ol.",
+    "step3Title": "Paylaş ve etkileşim kur",
+    "step3Desc": "Gönderiler paylaş, yorum yap ve bağlantılarını genişlet.",
+    "finalCta": "Topluluklar seni bekliyor.",
+    "finalSubtitle": "Yeni insanlarla tanışmak için en iyi zaman şimdi.",
+    "createAccount": "Hesap Oluştur"
+  },
+  "onboarding": {
+    "welcomeTitle": "VEXA Circle'e hoş geldin",
+    "welcomeSubtitle": "Senin için en uygun toplulukları bulabilmemiz için birkaç soru soracağız.",
+    "step1Title": "İlgi alanlarını seç",
+    "step1Subtitle": "En az 3 ilgi alanı seç.",
+    "step2Title": "Ne amaçla katılıyorsun?",
+    "step2Subtitle": "Bunu daha iyi öneriler sunmak için kullanacağız.",
+    "step3Title": "Profili tamamla",
+    "step3Subtitle": "Başlamak için birkaç bilgi daha.",
+    "continue": "Devam Et",
+    "back": "Geri",
+    "finish": "Başla"
+  },
+  "discover": {
+    "title": "Keşfet",
+    "filter": "Filtrele",
+    "share": "Paylaş"
+  },
+  "circles": {
+    "title": "Topluluklar",
+    "create": "Yeni Topluluk",
+    "leaveCircle": "Ayrıl",
+    "join": "Katıl"
+  },
+  "messages": {
+    "title": "Mesajlar"
+  },
+  "profile": {
+    "title": "Profil",
+    "editProfile": "Düzenle",
+    "circlesCount": "Topluluklar",
+    "connectionsCount": "Bağlantılar",
+    "postsCount": "Gönderiler",
+    "joinedDays": "Katılım Süresi"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "profile": "Profil",
+    "profileDesc": "Hesap bilgilerini ve profilini düzenle.",
+    "name": "Ad Soyad",
+    "username": "Kullanıcı Adı",
+    "bio": "Hakkımda",
+    "save": "Kaydet",
+    "notifications": "Bildirimler",
+    "notificationsDesc": "Bildirim tercihlerini ayarla.",
+    "channels": {
+      "push": "Push Bildirimleri",
+      "email": "E-posta Bildirimleri",
+      "sms": "SMS Bildirimleri"
+    },
+    "dangerZone": "Tehlikeli Bölge",
+    "dangerZoneDesc": "Hesabını kalıcı olarak sil.",
+    "deleteAccount": "Hesabı Sil"
   }
 }

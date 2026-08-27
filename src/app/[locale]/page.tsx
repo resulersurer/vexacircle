@@ -1,36 +1,101 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
-export default function Home() {
-  const t = useTranslations("navigation");
+export default function HomePage() {
+  const t = useTranslations("landing");
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            VEXA Circle
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Topluluklara katıl, yeni insanlarla tanış ve ilgi alanlarınla
-            bağlantı kur.
-          </p>
+    <div className="flex flex-1 flex-col">
+      <section className="relative overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+              İlgi alanlarınla ortak noktalar bul.
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-muted-foreground sm:text-xl">
+              VEXA Circle ile yeni insanlarla tanış, topluluklara katıl ve paylaşım
+              ortamına dahil ol. Sadece seninle aynı dünyaya sahip olanları bul.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-4">
+              <Link href="/tr/kayit">
+                <Button size="lg" className="px-8">
+                  Hemen Başla
+                </Button>
+              </Link>
+              <Link href="/tr/kesfet">
+                <Button variant="outline" size="lg" className="px-8">
+                  Keşfet
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
-        <nav className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <Link
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="/discover"
-          >
-            {t("discover")}
-          </Link>
-          <Link
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="/circles"
-          >
-            {t("circles")}
-          </Link>
-        </nav>
-      </main>
+        <div className="absolute -top-24 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+      </section>
+
+      <section className="border-t border-border bg-muted/40">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Nasıl çalışır?
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Sadece birkaç adımda topluluklara katıl ve paylaşıma başla.
+            </p>
+          </div>
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "İlgi alanlarını seç",
+                desc: "Sana en uygun toplulukları bulabilmemiz için ilgi alanlarını belirle.",
+              },
+              {
+                title: "Topluluklara katıl",
+                desc: "Beğendiğin topluluklara katıl, üyelerle tanış ve tartışmalara dahil ol.",
+              },
+              {
+                title: "Paylaş ve etkileşim kur",
+                desc: "Gönderiler paylaş, yorum yap ve bağlantılarını genişlet.",
+              },
+            ].map((step, index) => (
+              <Card key={index} className="h-full">
+                <div className="p-6">
+                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <span className="text-sm font-bold">{index + 1}</span>
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                    {step.desc}
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Topluluklar seni bekliyor.
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Yeni insanlarla tanışmak için en iyi zaman şimdi.
+            </p>
+            <div className="mt-10">
+              <Link href="/tr/kayit">
+                <Button size="lg" className="px-10">
+                  Hesap Oluştur
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
