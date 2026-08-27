@@ -1,0 +1,76 @@
+{
+  "navigation": {
+    "home": "Ana Sayfa",
+    "discover": "Keşfet",
+    "circles": "Topluluklar",
+    "messages": "Mesajlar",
+    "notifications": "Bildirimler",
+    "profile": "Profil",
+    "settings": "Ayarlar"
+  },
+  "onboarding": {
+    "makeNewFriends": "Yeni Arkadaşlar Edinmek",
+    "buildProfessionalNetwork": "Profesyonel Çevre Oluşturmak",
+    "findBusinessPartner": "Girişim Ortağı Bulmak",
+    "findTravelBuddy": "Seyahat Arkadaşı Bulmak",
+    "findSportsBuddy": "Spor Arkadaşı Bulmak",
+    "findGamingFriends": "Oyun Arkadaşları Bulmak",
+    "joinEvents": "Etkinliklere Katılmak",
+    "learnNewThings": "Yeni Şeyler Öğrenmek"
+  },
+  "interests": {
+    "technology": "Teknoloji",
+    "software": "Yazılım",
+    "entrepreneurship": "Girişimcilik",
+    "travel": "Seyahat",
+    "football": "Futbol",
+    "sports": "Spor",
+    "fitness": "Fitness",
+    "gaming": "Oyun",
+    "photography": "Fotoğrafçılık",
+    "coffee": "Kahve",
+    "investment": "Yatırım",
+    "music": "Müzik",
+    "cinema": "Sinema",
+    "books": "Kitap",
+    "automotive": "Otomobil",
+    "ai": "Yapay Zeka",
+    "science": "Bilim",
+    "design": "Tasarım",
+    "marketing": "Pazarlama",
+    "business": "İş Dünyası"
+  },
+  "subscription": {
+    "free": "Ücretsiz",
+    "vxaPlus": "VEXA Plus",
+    "vxaPro": "VEXA Pro",
+    "pricePlus": "149 TL / ay",
+    "pricePro": "299 TL / ay"
+  },
+  "actions": {
+    "createPost": "Gönderi Oluştur",
+    "follow": "Takip Et",
+    "unfollow": "Takibi Bırak",
+    "join": "Katıl",
+    "leaveCircle": "Topluluktan Ayrıl",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "share": "Paylaş",
+    "search": "Ara"
+  },
+  "emptyStates": {
+    "noResults": "Aramana uygun bir sonuç bulamadık.",
+    "noNotifications": "Henüz bildirimin yok.",
+    "noMessages": "Henüz mesajın yok.",
+    "noCircles": "Henüz katıldığın bir topluluk yok."
+  },
+  "errors": {
+    "generic": "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar dene.",
+    "network": "Bağlantı sorunu yaşıyoruz. İnternetini kontrol et."
+  },
+  "success": {
+    "saved": "Başarıyla kaydedildi."
+  }
+}
