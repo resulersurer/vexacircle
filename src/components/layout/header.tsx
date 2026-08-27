@@ -11,9 +11,10 @@ type HeaderProps = {
     name?: string | null;
     image?: string | null;
   };
+  showGuestActions?: boolean;
 };
 
-export function Header({ user }: HeaderProps) {
+export function Header({ user, showGuestActions }: HeaderProps) {
   const t = useTranslations("navigation");
   const pathname = usePathname();
 
@@ -67,36 +68,51 @@ export function Header({ user }: HeaderProps) {
           </nav>
         </div>
         <div className="flex items-center gap-2">
-          <Link href="/tr/bildirimler">
-            <Button variant="ghost" size="icon" className="relative">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-              </svg>
-              <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-destructive" />
-            </Button>
-          </Link>
-          <Link href="/tr/profil">
-            {user?.image ? (
-              <img
-                alt={user.name || "Profil"}
-                src={user.image}
-                className="h-8 w-8 rounded-full object-cover"
-              />
-            ) : (
-              <Avatar fallback={user?.name || "Kullanıcı"} className="h-8 w-8 text-xs" />
-            )}
-          </Link>
+          {showGuestActions ? (
+            <>
+              <Link href="/tr/giris">
+                <Button variant="ghost" size="sm">
+                  Giriş Yap
+                </Button>
+              </Link>
+              <Link href="/tr/kayit">
+                <Button size="sm">Kayıt Ol</Button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/tr/bildirimler">
+                <Button variant="ghost" size="icon" className="relative">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                  </svg>
+                  <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-destructive" />
+                </Button>
+              </Link>
+              <Link href="/tr/profil">
+                {user?.image ? (
+                  <img
+                    alt={user.name || "Profil"}
+                    src={user.image}
+                    className="h-8 w-8 rounded-full object-cover"
+                  />
+                ) : (
+                  <Avatar fallback={user?.name || "Kullanıcı"} className="h-8 w-8 text-xs" />
+                )}
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

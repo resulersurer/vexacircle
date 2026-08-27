@@ -143,5 +143,18 @@
     "dangerZone": "Tehlikeli Bölge",
     "dangerZoneDesc": "Hesabını kalıcı olarak sil.",
     "deleteAccount": "Hesabı Sil"
+  },
+  "login": {
+    "title": "Giriş Yap",
+    "subtitle": "Hesabına gir ve topluluklara katıl.",
+    "email": "E-posta",
+    "password": "Şifre",
+    "submit": "Giriş Yap",
+    "forgotPassword": "Şifremi unuttum",
+    "noAccount": "Hesabın yok mu?",
+    "register": "Kayıt Ol",
+    "orContinueWith": "Şununla devam et",
+    "google": "Google",
+    "apple": "Apple"
   }
 }

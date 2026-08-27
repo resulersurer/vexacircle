@@ -8,6 +8,27 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-1 flex-col">
+      <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
+        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          <Link href="/tr" className="flex items-center gap-2 font-semibold text-foreground">
+            <span className="text-xl font-bold text-primary">VEXA</span>
+            <span className="hidden text-sm font-normal text-muted-foreground sm:inline">
+              Circle
+            </span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <Link href="/tr/giris">
+              <Button variant="ghost" size="sm">
+                Giriş Yap
+              </Button>
+            </Link>
+            <Link href="/tr/kayit">
+              <Button size="sm">Kayıt Ol</Button>
+            </Link>
+          </div>
+        </div>
+      </header>
+
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-3xl text-center">
