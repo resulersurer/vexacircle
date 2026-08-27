@@ -3,12 +3,83 @@
 import * as React from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 
+type FormErrors = {
+  email?: string;
+  password?: string;
+  general?: string;
+};
+
 export default function LoginPage() {
   const t = useTranslations("login");
+  const router = useRouter();
+
+  const [form, setForm] = React.useState({
+    email: "",
+    password: "",
+    rememberMe: false,
+  });
+  const [errors, setErrors] = React.useState<FormErrors>({});
+  const [submitting, setSubmitting] = React.useState(false);
+
+  const validate = (): FormErrors => {
+    const next: FormErrors = {};
+
+    if (!form.email.trim()) {
+      next.email = t("errors.emailRequired");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      next.email = t("errors.emailInvalid");
+    }
+
+    if (!form.password) {
+      next.password = t("errors.passwordRequired");
+    }
+
+    return next;
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const validationErrors = validate();
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+
+    setSubmitting(true);
+    setErrors({});
+
+    try {
+      const response = await fetch("/tr/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: form.email.trim(),
+          password: form.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErrors({ general: data.error || t("errors.generic") });
+        setSubmitting(false);
+        return;
+      }
+
+      router.push("/tr/kesfet");
+    } catch {
+      setErrors({ general: t("errors.generic") });
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
@@ -23,25 +94,47 @@ export default function LoginPage() {
         </div>
 
         <Card className="p-6">
-          <form
-            className="flex flex-col gap-4"
-            onSubmit={(event) => {
-              event.preventDefault();
-            }}
-          >
-            <Input label={t("email")} type="email" placeholder="ornek@eposta.com" />
-            <Input label={t("password")} type="password" />
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+            <Input
+              label={t("email")}
+              type="email"
+              value={form.email}
+              onChange={(event) => setForm({ ...form, email: event.target.value })}
+              error={errors.email}
+              autoComplete="email"
+            />
+            <Input
+              label={t("password")}
+              type="password"
+              value={form.password}
+              onChange={(event) => setForm({ ...form, password: event.target.value })}
+              error={errors.password}
+              autoComplete="current-password"
+            />
+
             <div className="flex items-center justify-between">
               <label className="flex items-center gap-2 text-xs text-muted-foreground">
-                <input type="checkbox" className="h-4 w-4 rounded border-border accent-primary" />
-                Beni hatırla
+                <input
+                  type="checkbox"
+                  checked={form.rememberMe}
+                  onChange={(event) =>
+                    setForm({ ...form, rememberMe: event.target.checked })
+                  }
+                  className="h-4 w-4 rounded border-border accent-primary"
+                />
+                {t("rememberMe")}
               </label>
               <Link href="/tr/sifremi-unuttum" className="text-xs text-primary hover:underline">
                 {t("forgotPassword")}
               </Link>
             </div>
-            <Button type="submit" className="w-full">
-              {t("submit")}
+
+            {errors.general ? (
+              <p className="text-xs text-destructive">{errors.general}</p>
+            ) : null}
+
+            <Button type="submit" className="w-full" disabled={submitting}>
+              {submitting ? "..." : t("submit")}
             </Button>
           </form>
 

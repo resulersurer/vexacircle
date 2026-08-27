@@ -155,7 +155,15 @@
     "register": "Kayıt Ol",
     "orContinueWith": "Şununla devam et",
     "google": "Google",
-    "apple": "Apple"
+    "apple": "Apple",
+    "rememberMe": "Beni hatırla",
+    "errors": {
+      "emailRequired": "E-posta gerekli.",
+      "emailInvalid": "Geçerli bir e-posta gir.",
+      "passwordRequired": "Şifre gerekli.",
+      "invalidCredentials": "E-posta veya şifre hatalı.",
+      "generic": "Giriş yapılırken bir sorun oluştu. Lütfen tekrar dene."
+    }
   },
   "register": {
     "title": "Hesap Oluştur",
