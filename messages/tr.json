@@ -156,5 +156,29 @@
     "orContinueWith": "Şununla devam et",
     "google": "Google",
     "apple": "Apple"
+  },
+  "register": {
+    "title": "Hesap Oluştur",
+    "subtitle": "Hemen katıl ve topluluklara dahil ol.",
+    "name": "Ad Soyad",
+    "email": "E-posta",
+    "password": "Şifre",
+    "confirmPassword": "Şifre Tekrar",
+    "submit": "Kayıt Ol",
+    "hasAccount": "Zaten hesabın var mı?",
+    "login": "Giriş Yap",
+    "orContinueWith": "Şununla devam et",
+    "google": "Google",
+    "apple": "Apple",
+    "terms": "Katılım koşullarını kabul ediyorum.",
+    "errors": {
+      "nameRequired": "Ad Soyad gerekli.",
+      "emailRequired": "E-posta gerekli.",
+      "emailInvalid": "Geçerli bir e-posta gir.",
+      "passwordRequired": "Şifre gerekli.",
+      "passwordMin": "Şifre en az 8 karakter olmalı.",
+      "passwordMismatch": "Şifreler eşleşmiyor.",
+      "generic": "Kayıt sırasında bir sorun oluştu. Lütfen tekrar dene."
+    }
   }
 }
