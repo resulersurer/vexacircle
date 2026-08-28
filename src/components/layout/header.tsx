@@ -7,16 +7,20 @@ import { Button } from "@/components/ui/button";
 import { Avatar } from "@/components/ui/avatar";
 
 type HeaderProps = {
+  locale?: string;
   user?: {
     name?: string | null;
     image?: string | null;
+    email?: string | null;
   };
   showGuestActions?: boolean;
 };
 
-export function Header({ user, showGuestActions }: HeaderProps) {
+export function Header({ locale = "tr", user, showGuestActions }: HeaderProps) {
   const t = useTranslations("navigation");
   const pathname = usePathname();
+  const base = `/${locale}`;
+  const homeHref = showGuestActions ? base : `${base}/kesfet`;
 
   const isActive = (href: string) =>
     pathname === href || pathname?.startsWith(`${href}/`);
@@ -25,7 +29,7 @@ export function Header({ user, showGuestActions }: HeaderProps) {
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-6">
-          <Link href="/tr" className="flex items-center gap-2 font-semibold text-foreground">
+          <Link href={homeHref} className="flex items-center gap-2 font-semibold text-foreground">
             <span className="text-xl font-bold text-primary">VEXA</span>
             <span className="hidden text-sm font-normal text-muted-foreground sm:inline">
               Circle
@@ -33,10 +37,10 @@ export function Header({ user, showGuestActions }: HeaderProps) {
           </Link>
           <nav className="hidden items-center gap-1 md:flex">
             <Link
-              href="/tr/kesfet"
+              href={`${base}/kesfet`}
               className={[
                 "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                isActive("/tr/kesfet")
+                isActive(`${base}/kesfet`)
                   ? "bg-accent text-accent-foreground"
                   : "text-muted-foreground hover:text-foreground",
               ].join(" ")}
@@ -44,10 +48,10 @@ export function Header({ user, showGuestActions }: HeaderProps) {
               {t("discover")}
             </Link>
             <Link
-              href="/tr/topluluklar"
+              href={`${base}/topluluklar`}
               className={[
                 "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                isActive("/tr/topluluklar")
+                isActive(`${base}/topluluklar`)
                   ? "bg-accent text-accent-foreground"
                   : "text-muted-foreground hover:text-foreground",
               ].join(" ")}
@@ -55,10 +59,10 @@ export function Header({ user, showGuestActions }: HeaderProps) {
               {t("circles")}
             </Link>
             <Link
-              href="/tr/mesajlar"
+              href={`${base}/mesajlar`}
               className={[
                 "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                isActive("/tr/mesajlar")
+                isActive(`${base}/mesajlar`)
                   ? "bg-accent text-accent-foreground"
                   : "text-muted-foreground hover:text-foreground",
               ].join(" ")}
@@ -70,18 +74,18 @@ export function Header({ user, showGuestActions }: HeaderProps) {
         <div className="flex items-center gap-2">
           {showGuestActions ? (
             <>
-              <Link href="/tr/giris">
+              <Link href={`${base}/giris`}>
                 <Button variant="ghost" size="sm">
                   Giriş Yap
                 </Button>
               </Link>
-              <Link href="/tr/kayit">
+              <Link href={`${base}/kayit`}>
                 <Button size="sm">Kayıt Ol</Button>
               </Link>
             </>
           ) : (
             <>
-              <Link href="/tr/bildirimler">
+              <Link href={`${base}/bildirimler`}>
                 <Button variant="ghost" size="icon" className="relative">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +104,7 @@ export function Header({ user, showGuestActions }: HeaderProps) {
                   <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-destructive" />
                 </Button>
               </Link>
-              <Link href="/tr/profil">
+              <Link href={`${base}/profil`} title={user?.email || user?.name || "Profil"}>
                 {user?.image ? (
                   <img
                     alt={user.name || "Profil"}

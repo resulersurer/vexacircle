@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils/cn";
 
 type BottomNavProps = {
+  locale?: string;
   unreadCounts?: {
     circles?: number;
     messages?: number;
@@ -13,13 +14,14 @@ type BottomNavProps = {
   };
 };
 
-export function BottomNav({ unreadCounts }: BottomNavProps) {
+export function BottomNav({ locale = "tr", unreadCounts }: BottomNavProps) {
   const t = useTranslations("navigation");
   const pathname = usePathname();
+  const base = `/${locale}`;
 
   const items = [
     {
-      href: "/tr/kesfet",
+      href: `${base}/kesfet`,
       label: t("discover"),
       icon: (active: boolean) => (
         <svg
@@ -39,7 +41,7 @@ export function BottomNav({ unreadCounts }: BottomNavProps) {
       ),
     },
     {
-      href: "/tr/topluluklar",
+      href: `${base}/topluluklar`,
       label: t("circles"),
       badge: unreadCounts?.circles,
       icon: (active: boolean) => (
@@ -62,7 +64,7 @@ export function BottomNav({ unreadCounts }: BottomNavProps) {
       ),
     },
     {
-      href: "/tr/mesajlar",
+      href: `${base}/mesajlar`,
       label: t("messages"),
       badge: unreadCounts?.messages,
       icon: (active: boolean) => (
@@ -82,8 +84,9 @@ export function BottomNav({ unreadCounts }: BottomNavProps) {
       ),
     },
     {
-      href: "/tr/profil",
-      label: t("profile"),
+      href: `${base}/bildirimler`,
+      label: t("notifications"),
+      badge: unreadCounts?.notifications,
       icon: (active: boolean) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -96,8 +99,8 @@ export function BottomNav({ unreadCounts }: BottomNavProps) {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+          <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
         </svg>
       ),
     },

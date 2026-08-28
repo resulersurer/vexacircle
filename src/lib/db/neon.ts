@@ -9,6 +9,4 @@ if (!connectionString) {
 }
 
 const sql = connectionString ? neon(connectionString) : null;
-export const db = sql
-  ? drizzle(sql, { schema })
-  : (null as unknown as ReturnType<typeof drizzle>);
+export const db = sql ? drizzle(sql, { schema }) : null;

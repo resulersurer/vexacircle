@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { db } from "@/lib/db/neon";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { createSession, SESSION_COOKIE, sessionCookieOptions } from "@/lib/auth/session";
 
 export async function POST(request: Request) {
   try {
@@ -45,7 +46,8 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json(
+    const session = await createSession(user.id);
+    const response = NextResponse.json(
       {
         ok: true,
         user: {
@@ -57,6 +59,12 @@ export async function POST(request: Request) {
       },
       { status: 200 }
     );
+
+    if (session) {
+      response.cookies.set(SESSION_COOKIE, session.id, sessionCookieOptions(session.maxAge));
+    }
+
+    return response;
   } catch (error) {
     console.error("Login API error:", error);
     const message =

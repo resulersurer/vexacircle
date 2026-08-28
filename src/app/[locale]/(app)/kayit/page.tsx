@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,7 @@ type FormErrors = {
 
 export default function RegisterPage() {
   const t = useTranslations("register");
+  const locale = useLocale();
   const router = useRouter();
 
   const [form, setForm] = React.useState({
@@ -69,7 +70,7 @@ export default function RegisterPage() {
     setErrors({});
 
     try {
-      const response = await fetch("/tr/api/auth/register", {
+      const response = await fetch(`/${locale}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -91,7 +92,7 @@ export default function RegisterPage() {
 
       setSuccess(true);
       setTimeout(() => {
-        router.push("/tr/onboarding");
+        router.push(`/${locale}/onboarding`);
       }, 600);
     } catch {
       setErrors({ general: t("errors.generic") });
@@ -113,7 +114,7 @@ export default function RegisterPage() {
     <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <Link href="/tr" className="inline-flex items-center gap-2 text-foreground">
+          <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-foreground">
             <span className="text-xl font-bold text-primary">VEXA</span>
             <span className="text-sm font-normal text-muted-foreground">Circle</span>
           </Link>
@@ -191,7 +192,7 @@ export default function RegisterPage() {
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
             {t("hasAccount")}{" "}
-            <Link href="/tr/giris" className="font-medium text-primary hover:underline">
+            <Link href={`/${locale}/giris`} className="font-medium text-primary hover:underline">
               {t("login")}
             </Link>
           </p>

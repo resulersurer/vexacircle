@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,7 @@ type FormErrors = {
 
 export default function LoginPage() {
   const t = useTranslations("login");
+  const locale = useLocale();
   const router = useRouter();
 
   const [form, setForm] = React.useState({
@@ -55,7 +56,7 @@ export default function LoginPage() {
     setErrors({});
 
     try {
-      const response = await fetch("/tr/api/auth/login", {
+      const response = await fetch(`/${locale}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +75,7 @@ export default function LoginPage() {
         return;
       }
 
-      router.push("/tr/kesfet");
+      router.push(`/${locale}/kesfet`);
     } catch {
       setErrors({ general: t("errors.generic") });
       setSubmitting(false);
@@ -85,7 +86,7 @@ export default function LoginPage() {
     <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <Link href="/tr" className="inline-flex items-center gap-2 text-foreground">
+          <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-foreground">
             <span className="text-xl font-bold text-primary">VEXA</span>
             <span className="text-sm font-normal text-muted-foreground">Circle</span>
           </Link>
@@ -124,7 +125,7 @@ export default function LoginPage() {
                 />
                 {t("rememberMe")}
               </label>
-              <Link href="/tr/sifremi-unuttum" className="text-xs text-primary hover:underline">
+              <Link href={`/${locale}/sifremi-unuttum`} className="text-xs text-primary hover:underline">
                 {t("forgotPassword")}
               </Link>
             </div>
@@ -160,7 +161,7 @@ export default function LoginPage() {
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
             {t("noAccount")}{" "}
-            <Link href="/tr/kayit" className="font-medium text-primary hover:underline">
+            <Link href={`/${locale}/kayit`} className="font-medium text-primary hover:underline">
               {t("register")}
             </Link>
           </p>
